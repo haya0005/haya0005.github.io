@@ -1,0 +1,16 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32" role="img" aria-label="HY">
+  <defs>
+    <linearGradient id="bg" x1="4" y1="2" x2="28" y2="30" gradientUnits="userSpaceOnUse">
+      <stop offset="0%" stop-color="#12a39c"/>
+      <stop offset="100%" stop-color="#085652"/>
+    </linearGradient>
+  </defs>
+  <rect width="32" height="32" rx="8" fill="url(#bg)"/>
+  <!-- HY monogram -->
+  <g fill="#ffffff">
+    <!-- H -->
+    <path d="M7.2 9.2h2.15v5.05h4.1V9.2h2.15v13.6H13.45v-5.35h-4.1v5.35H7.2z"/>
+    <!-- Y -->
+    <path d="M17.35 9.2h2.35l2.05 4.55 2.05-4.55h2.35l-3.35 6.7v6.9h-2.15v-6.9z"/>
+  </g>
+</svg>
