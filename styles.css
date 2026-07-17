@@ -496,24 +496,43 @@ a:hover {
   font-size: 0.95rem;
 }
 
-.interest-list {
-  margin: 0.35rem 0 0;
-  padding-left: 1.15rem;
+.about-interests {
+  margin-top: 1.15rem;
+  padding-top: 1rem;
+  border-top: 1px solid color-mix(in srgb, var(--line) 75%, transparent);
+  max-width: 36rem;
+}
+
+.about-interests-label {
+  margin: 0 0 0.4rem;
+  font-size: 0.82rem;
+  font-weight: 600;
+  letter-spacing: 0.02em;
   color: var(--muted);
+}
+
+.about-interests-label .en {
+  font-weight: 500;
+  opacity: 0.85;
+}
+
+.interest-list {
+  margin: 0;
+  padding-left: 1.1rem;
+  color: var(--ink);
   font-size: 0.95rem;
+  line-height: 1.55;
 }
 
 .interest-list li {
-  margin: 0.25rem 0;
+  margin: 0.2rem 0;
 }
 
-.interests-heading {
-  margin-top: 1.6rem !important;
-  font-size: 1rem !important;
-  font-weight: 600;
+.interest-list .en-inline {
+  display: block;
   color: var(--muted);
-  border-bottom: 1px solid color-mix(in srgb, var(--line) 80%, transparent) !important;
-  border-image: none !important;
+  font-size: 0.86rem;
+  margin-top: 0.1rem;
 }
 
 .plain-list li {
@@ -866,6 +885,26 @@ a:hover {
     display: none;
   }
 
+  .about-interests {
+    margin-top: 0.9rem;
+    padding-top: 0.85rem;
+    max-width: 100%;
+    text-align: left;
+  }
+
+  .about-interests-label {
+    font-size: 0.72rem;
+  }
+
+  .interest-list {
+    font-size: 0.8rem;
+    padding-left: 1rem;
+  }
+
+  .interest-list .en-inline {
+    font-size: 0.72rem;
+  }
+
   .en-line,
   .en-inline {
     font-size: 0.72rem;
@@ -982,10 +1021,6 @@ a:hover {
   .btn {
     font-size: 0.7rem;
     padding: 0.24rem 0.5rem;
-  }
-
-  .interest-list {
-    font-size: 0.8rem;
   }
 
   .bibtex {
