@@ -764,7 +764,7 @@ a:hover {
   .portrait {
     justify-self: start;
     order: -1;
-    width: min(100%, 132px);
+    width: min(100%, 96px);
   }
 
   .section {
