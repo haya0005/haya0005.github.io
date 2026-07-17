@@ -83,6 +83,18 @@ a:hover {
   backdrop-filter: blur(14px) saturate(1.2);
   background: color-mix(in srgb, #f7fafb 78%, transparent);
   border-bottom: 1px solid color-mix(in srgb, var(--line) 70%, transparent);
+  animation: header-in 0.7s var(--ease) both;
+}
+
+@keyframes header-in {
+  from {
+    opacity: 0;
+    transform: translateY(-10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
 }
 
 .header-inner {
@@ -138,7 +150,11 @@ a:hover {
   color: var(--ink);
 }
 
-.nav a:hover::after {
+.nav a.is-active {
+  color: var(--ink);
+}
+
+.nav a.is-active::after {
   transform: scaleX(1);
 }
 
@@ -150,23 +166,33 @@ a:hover {
   padding: 3.4rem 0 2.6rem;
 }
 
-.hero-text,
-.portrait {
-  animation: rise-in 0.9s var(--ease) both;
+.hero-text {
+  animation: rise-in 0.85s var(--ease) 0.18s both;
 }
 
 .portrait {
-  animation-delay: 0.12s;
+  animation: portrait-in 0.95s var(--ease) both;
 }
 
 @keyframes rise-in {
   from {
     opacity: 0;
-    transform: translateY(18px);
+    transform: translateY(22px);
   }
   to {
     opacity: 1;
     transform: translateY(0);
+  }
+}
+
+@keyframes portrait-in {
+  from {
+    opacity: 0;
+    transform: translateY(16px) scale(0.94);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0) scale(1);
   }
 }
 
@@ -264,6 +290,19 @@ a:hover {
   border-top: 1px solid color-mix(in srgb, var(--line) 75%, transparent);
 }
 
+.section.reveal {
+  opacity: 0;
+  transform: translateY(18px);
+  transition:
+    opacity 0.75s var(--ease),
+    transform 0.75s var(--ease);
+}
+
+.section.reveal.is-visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
 .section h2 {
   margin: 0 0 1.35rem;
   font-family: var(--serif);
@@ -283,7 +322,18 @@ a:hover {
   border-radius: 50%;
   background: var(--accent-bright);
   box-shadow: 0 0 0 4px color-mix(in srgb, var(--accent-bright) 22%, transparent);
-  transform: translateY(-0.05rem);
+  transform: translateY(-0.05rem) scale(0.6);
+  opacity: 0.35;
+  transition:
+    transform 0.55s var(--ease) 0.12s,
+    opacity 0.55s var(--ease) 0.12s,
+    box-shadow 0.55s var(--ease) 0.12s;
+}
+
+.section.reveal.is-visible h2::before {
+  transform: translateY(-0.05rem) scale(1);
+  opacity: 1;
+  box-shadow: 0 0 0 5px color-mix(in srgb, var(--accent-bright) 20%, transparent);
 }
 
 .section h2 .en {
@@ -311,6 +361,11 @@ a:hover {
   position: relative;
   width: 100%;
   max-width: 28rem;
+  transition: transform 0.25s var(--ease);
+}
+
+.pubs-search-field:focus-within {
+  transform: translateY(-1px);
 }
 
 .pubs-search-icon {
@@ -555,11 +610,11 @@ a:hover {
   text-decoration: none;
   cursor: pointer;
   transition:
-    transform 0.2s var(--ease),
-    background 0.2s var(--ease),
-    border-color 0.2s var(--ease),
-    color 0.2s var(--ease),
-    box-shadow 0.2s var(--ease);
+    transform 0.22s var(--ease),
+    background 0.22s var(--ease),
+    border-color 0.22s var(--ease),
+    color 0.22s var(--ease),
+    box-shadow 0.22s var(--ease);
 }
 
 .btn::before {
@@ -570,15 +625,20 @@ a:hover {
   background: currentColor;
   -webkit-mask: var(--btn-icon) center / contain no-repeat;
   mask: var(--btn-icon) center / contain no-repeat;
+  transition: transform 0.22s var(--ease);
 }
 
 .btn:hover {
   transform: translateY(-2px);
-  box-shadow: 0 6px 16px rgba(16, 24, 32, 0.08);
+  box-shadow: 0 8px 18px rgba(16, 24, 32, 0.1);
+}
+
+.btn:hover::before {
+  transform: scale(1.08);
 }
 
 .btn:active {
-  transform: translateY(0);
+  transform: translateY(0) scale(0.98);
 }
 
 .btn-bib {
@@ -713,12 +773,22 @@ a:hover {
     animation: none !important;
     transition: none !important;
   }
+
+  .section.reveal {
+    opacity: 1;
+    transform: none;
+  }
+
+  .section h2::before {
+    opacity: 1;
+    transform: translateY(-0.05rem) scale(1);
+  }
 }
 
 @media (max-width: 760px) {
   body {
-    font-size: 0.92rem;
-    line-height: 1.65;
+    font-size: 0.86rem;
+    line-height: 1.62;
   }
 
   .container {
@@ -734,68 +804,100 @@ a:hover {
 
   .nav {
     gap: 0.55rem 0.85rem;
-    font-size: 0.8rem;
+    font-size: 0.74rem;
   }
 
   .brand {
-    font-size: 0.95rem;
+    font-size: 0.9rem;
   }
 
   .hero {
-    grid-template-columns: 1fr auto;
-    gap: 0.85rem 1rem;
-    align-items: start;
-    padding: 1.35rem 0 1.2rem;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 0.75rem;
+    padding: 1.25rem 0 1.1rem;
+    text-align: center;
+  }
+
+  .hero-text {
+    width: 100%;
+    max-width: 22rem;
   }
 
   .hero h1 {
-    font-size: clamp(1.35rem, 6.2vw, 1.7rem);
+    font-size: clamp(1.22rem, 5.5vw, 1.5rem);
+    line-height: 1.25;
+  }
+
+  .hero h1 span {
+    margin-top: 0.15rem;
   }
 
   .affiliation {
-    font-size: 0.82rem;
-    margin-top: 0.7rem;
-    padding-left: 0.7rem;
+    font-size: 0.75rem;
+    margin-top: 0.65rem;
+    padding-left: 0;
+    line-height: 1.55;
+    display: inline-block;
+    text-align: left;
+  }
+
+  .affiliation::before {
+    display: none;
+  }
+
+  .affiliation .en-line {
+    display: none;
   }
 
   .en-line,
   .en-inline {
-    font-size: 0.78rem;
+    font-size: 0.72rem;
   }
 
-  .portrait {
-    justify-self: end;
-    align-self: start;
-    order: 0;
-    width: 72px;
-    margin-top: 0.15rem;
+  .hero .portrait {
+    order: -1;
+    width: 112px;
+    max-width: 112px;
+    margin: 0;
+    justify-self: unset;
   }
 
-  .portrait::before {
-    inset: 5px -5px -5px 5px;
+  .hero .portrait::before {
+    display: none;
+  }
+
+  .hero .portrait img {
+    width: 112px;
+    height: 140px;
+    max-width: 112px;
+    aspect-ratio: auto;
+    object-fit: cover;
+    object-position: center 18%;
   }
 
   .section {
-    padding: 1.55rem 0;
+    padding: 1.4rem 0;
   }
 
   .section h2 {
-    margin-bottom: 0.9rem;
-    font-size: 1.2rem;
+    margin-bottom: 0.8rem;
+    font-size: 1.08rem;
   }
 
   .section h3 {
-    margin-top: 1.25rem;
-    font-size: 0.98rem;
+    margin-top: 1.15rem;
+    font-size: 0.92rem;
   }
 
   .section h4 {
-    font-size: 0.88rem;
+    font-size: 0.82rem;
   }
 
   .pubs-search input {
-    font-size: 0.88rem;
-    padding: 0.58rem 0.85rem 0.58rem 2.3rem;
+    font-size: 0.82rem;
+    padding: 0.55rem 0.8rem 0.55rem 2.2rem;
   }
 
   .timeline li,
@@ -803,29 +905,66 @@ a:hover {
   .contact-list li {
     grid-template-columns: 1fr;
     gap: 0.2rem;
-    padding-top: 0.6rem;
-    padding-bottom: 0.6rem;
+    padding-top: 0.55rem;
+    padding-bottom: 0.55rem;
   }
 
   .when {
-    font-size: 0.8rem;
+    font-size: 0.74rem;
+  }
+
+  .timeline strong {
+    font-size: 0.86rem;
+  }
+
+  .timeline p,
+  .timeline .en-line,
+  .timeline .en-inline {
+    font-size: 0.78rem;
+  }
+
+  .plain-list li,
+  .contact-list li {
+    font-size: 0.84rem;
+  }
+
+  .contact-list span {
+    font-size: 0.78rem;
+  }
+
+  .cofirst,
+  .award-inline,
+  .award-note {
+    font-size: 0.78rem;
+  }
+
+  .pubs-search-status,
+  .pubs-search-empty,
+  .footnote,
+  .note,
+  .site-footer {
+    font-size: 0.78rem;
   }
 
   .pubs li {
-    padding: 0.65rem 0.2rem 0.65rem 1.55rem;
-    font-size: 0.9rem;
+    padding: 0.55rem 0.2rem 0.55rem 1.45rem;
+    font-size: 0.84rem;
+  }
+
+  .pub-body {
+    font-size: 0.84rem;
   }
 
   .btn {
-    font-size: 0.74rem;
-    padding: 0.26rem 0.55rem;
+    font-size: 0.7rem;
+    padding: 0.24rem 0.5rem;
   }
 
   .interest-list {
-    font-size: 0.88rem;
+    font-size: 0.8rem;
   }
 
   .bibtex {
-    font-size: 0.72rem;
+    font-size: 0.68rem;
   }
 }
