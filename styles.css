@@ -23,6 +23,7 @@
 
 html {
   scroll-behavior: smooth;
+  scroll-padding-top: 2.75rem;
 }
 
 body {
@@ -285,6 +286,11 @@ a:hover {
   border: 1px solid color-mix(in srgb, var(--line) 80%, white);
 }
 
+.hero,
+.section {
+  scroll-margin-top: 2.75rem;
+}
+
 .section {
   padding: 2.4rem 0;
   border-top: 1px solid color-mix(in srgb, var(--line) 75%, transparent);
@@ -491,7 +497,7 @@ a:hover {
 }
 
 .interest-list {
-  margin: 0;
+  margin: 0.35rem 0 0;
   padding-left: 1.15rem;
   color: var(--muted);
   font-size: 0.95rem;
@@ -499,6 +505,15 @@ a:hover {
 
 .interest-list li {
   margin: 0.25rem 0;
+}
+
+.interests-heading {
+  margin-top: 1.6rem !important;
+  font-size: 1rem !important;
+  font-weight: 600;
+  color: var(--muted);
+  border-bottom: 1px solid color-mix(in srgb, var(--line) 80%, transparent) !important;
+  border-image: none !important;
 }
 
 .plain-list li {
@@ -879,6 +894,15 @@ a:hover {
 
   .section {
     padding: 1.4rem 0;
+    scroll-margin-top: 3.25rem;
+  }
+
+  .hero {
+    scroll-margin-top: 3.25rem;
+  }
+
+  html {
+    scroll-padding-top: 3.25rem;
   }
 
   .section h2 {

@@ -66,10 +66,8 @@
           <div>第144回研究会 音楽情報科学研究会（MUS研究会）にてベストプレゼンテーション賞（Best Research 部門）を受賞しました。</div>
         </li>
       </ol>
-    </section>
 
-    <section class="section container" id="interests">
-      <h2>研究興味 <span class="en">(Research Interests)</span></h2>
+      <h3 class="interests-heading">研究興味 <span class="en">(Research Interests)</span></h3>
       <ul class="interest-list">
         <li>基盤モデルの内部機序分析 <span class="en-inline">(Internal Mechanism Analysis of Foundation Models)</span></li>
         <li>音楽情報処理 <span class="en-inline">(Music Information Processing)</span></li>
@@ -447,8 +445,9 @@
     })();
 
     (() => {
-      const sections = Array.from(document.querySelectorAll("main > .section"));
-      sections.forEach((section) => section.classList.add("reveal"));
+      document.querySelectorAll("main > .section").forEach((section) => {
+        section.classList.add("reveal");
+      });
 
       const revealObserver = new IntersectionObserver(
         (entries) => {
@@ -462,11 +461,21 @@
         { threshold: 0.14, rootMargin: "0px 0px -6% 0px" }
       );
 
-      sections.forEach((section) => revealObserver.observe(section));
+      document.querySelectorAll("main > .section.reveal").forEach((section) => {
+        revealObserver.observe(section);
+      });
 
       const navLinks = Array.from(document.querySelectorAll('.nav a[href^="#"]'));
-      const targets = navLinks
-        .map((link) => document.querySelector(link.getAttribute("href")))
+      const spySections = [
+        "about",
+        "news",
+        "education",
+        "awards",
+        "publications",
+        "experience",
+        "contact",
+      ]
+        .map((id) => document.getElementById(id))
         .filter(Boolean);
 
       const setActive = (id) => {
@@ -475,20 +484,44 @@
         });
       };
 
-      const spyObserver = new IntersectionObserver(
-        (entries) => {
-          const visible = entries
-            .filter((entry) => entry.isIntersecting)
-            .sort((a, b) => b.intersectionRatio - a.intersectionRatio)[0];
-          if (visible?.target?.id) setActive(visible.target.id);
-        },
-        { threshold: [0.2, 0.45, 0.7], rootMargin: "-20% 0px -45% 0px" }
-      );
+      const updateActiveNav = () => {
+        const header = document.querySelector(".site-header");
+        const offset = (header ? header.getBoundingClientRect().height : 0) + 12;
+        const scrollBottom = window.scrollY + window.innerHeight;
+        const docHeight = document.documentElement.scrollHeight;
+        const nearBottom = docHeight - scrollBottom < 48;
 
-      targets.forEach((target) => spyObserver.observe(target));
-      if (document.getElementById("about")) {
-        spyObserver.observe(document.getElementById("about"));
-      }
+        if (nearBottom) {
+          setActive(spySections[spySections.length - 1]?.id || "contact");
+          return;
+        }
+
+        let currentId = spySections[0]?.id || "about";
+        for (const section of spySections) {
+          if (section.getBoundingClientRect().top <= offset) {
+            currentId = section.id;
+          }
+        }
+
+        // 末尾付近で経験セクションが画面内なら経験を優先
+        const experience = document.getElementById("experience");
+        const contact = document.getElementById("contact");
+        if (experience && contact) {
+          const contactTop = contact.getBoundingClientRect().top;
+          const experienceTop = experience.getBoundingClientRect().top;
+          if (contactTop < window.innerHeight * 0.65) {
+            currentId = "contact";
+          } else if (experienceTop < window.innerHeight * 0.65) {
+            currentId = "experience";
+          }
+        }
+
+        setActive(currentId);
+      };
+
+      updateActiveNav();
+      window.addEventListener("scroll", updateActiveNav, { passive: true });
+      window.addEventListener("resize", updateActiveNav);
     })();
   </script>
 </body>
