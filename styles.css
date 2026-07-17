@@ -23,7 +23,7 @@
 
 html {
   scroll-behavior: smooth;
-  scroll-padding-top: 2.75rem;
+  scroll-padding-top: 2.5rem;
 }
 
 body {
@@ -288,7 +288,7 @@ a:hover {
 
 .hero,
 .section {
-  scroll-margin-top: 2.75rem;
+  scroll-margin-top: 2.5rem;
 }
 
 .section {
@@ -933,15 +933,15 @@ a:hover {
 
   .section {
     padding: 1.4rem 0;
-    scroll-margin-top: 3.25rem;
+    scroll-margin-top: 2.85rem;
   }
 
   .hero {
-    scroll-margin-top: 3.25rem;
+    scroll-margin-top: 2.85rem;
   }
 
   html {
-    scroll-padding-top: 3.25rem;
+    scroll-padding-top: 2.85rem;
   }
 
   .section h2 {

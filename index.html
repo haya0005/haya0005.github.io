@@ -545,44 +545,65 @@
         });
       };
 
+      // ナビクリック直後はスクロール中の誤判定を無視する
+      let lockedId = null;
+      let lockTimer = 0;
+
       const updateActiveNav = () => {
+        if (lockedId) {
+          setActive(lockedId);
+          return;
+        }
+
         const header = document.querySelector(".site-header");
-        const offset = (header ? header.getBoundingClientRect().height : 0) + 12;
+        const headerHeight = header ? header.getBoundingClientRect().height : 0;
+        // 見出しがヘッダー下〜画面上部に入ったら切り替える
+        const offset = headerHeight + 72;
+
         const scrollBottom = window.scrollY + window.innerHeight;
         const docHeight = document.documentElement.scrollHeight;
-        const nearBottom = docHeight - scrollBottom < 48;
-
-        if (nearBottom) {
+        if (docHeight - scrollBottom < 64) {
           setActive(spySections[spySections.length - 1]?.id || "contact");
           return;
         }
 
         let currentId = spySections[0]?.id || "about";
         for (const section of spySections) {
-          if (section.getBoundingClientRect().top <= offset) {
+          const marker = section.querySelector("h1, h2") || section;
+          if (marker.getBoundingClientRect().top <= offset) {
             currentId = section.id;
           }
         }
-
-        // 末尾付近で経験セクションが画面内なら経験を優先
-        const experience = document.getElementById("experience");
-        const contact = document.getElementById("contact");
-        if (experience && contact) {
-          const contactTop = contact.getBoundingClientRect().top;
-          const experienceTop = experience.getBoundingClientRect().top;
-          if (contactTop < window.innerHeight * 0.65) {
-            currentId = "contact";
-          } else if (experienceTop < window.innerHeight * 0.65) {
-            currentId = "experience";
-          }
-        }
-
         setActive(currentId);
       };
 
       updateActiveNav();
       window.addEventListener("scroll", updateActiveNav, { passive: true });
       window.addEventListener("resize", updateActiveNav);
+      window.addEventListener("hashchange", () => {
+        const id = location.hash.slice(1);
+        if (!id) return;
+        lockedId = id;
+        setActive(id);
+        window.clearTimeout(lockTimer);
+        lockTimer = window.setTimeout(() => {
+          lockedId = null;
+          updateActiveNav();
+        }, 800);
+      });
+      navLinks.forEach((link) => {
+        link.addEventListener("click", () => {
+          const id = link.getAttribute("href")?.slice(1);
+          if (!id || id === "top") return;
+          lockedId = id;
+          setActive(id);
+          window.clearTimeout(lockTimer);
+          lockTimer = window.setTimeout(() => {
+            lockedId = null;
+            updateActiveNav();
+          }, 800);
+        });
+      });
     })();
   </script>
 </body>
