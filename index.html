@@ -275,6 +275,10 @@
         </li>
       </ol>
 
+      <h4>共著 <span class="en">(Co-author)</span></h4>
+      <ol class="pubs">
+      </ol>
+
       <h3>国内会議 <span class="en">(Domestic Conferences)</span></h3>
 
       <h4>主著 <span class="en">(First Author)</span></h4>
@@ -557,6 +561,22 @@
           if (match) visibleCount += 1;
         });
 
+        if (!query) {
+          section.querySelectorAll(".pubs").forEach((list) => {
+            list.hidden = false;
+            const heading = list.previousElementSibling;
+            if (heading && (heading.tagName === "H4" || heading.tagName === "H3")) {
+              heading.hidden = false;
+            }
+          });
+          section.querySelectorAll("h3").forEach((h3) => {
+            h3.hidden = false;
+          });
+          status.textContent = "";
+          empty.hidden = true;
+          return;
+        }
+
         section.querySelectorAll(".pubs").forEach((list) => {
           const anyVisible = Array.from(list.children).some((li) => !li.hidden);
           list.hidden = !anyVisible;
@@ -579,12 +599,6 @@
           }
           h3.hidden = !anyVisible;
         });
-
-        if (!query) {
-          status.textContent = "";
-          empty.hidden = true;
-          return;
-        }
 
         status.textContent = `${visibleCount} 件ヒット`;
         empty.hidden = visibleCount > 0;
