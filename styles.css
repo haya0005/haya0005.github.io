@@ -119,6 +119,65 @@ a:hover {
   color: var(--accent);
 }
 
+.header-brand {
+  display: flex;
+  align-items: center;
+  gap: 0.7rem;
+  flex-shrink: 0;
+}
+
+.lang-switch {
+  display: inline-flex;
+  align-items: center;
+  padding: 2px;
+  border: 1px solid color-mix(in srgb, var(--line) 90%, transparent);
+  border-radius: 999px;
+  background: color-mix(in srgb, var(--surface) 88%, transparent);
+}
+
+.lang-switch button {
+  appearance: none;
+  border: 0;
+  background: transparent;
+  color: var(--muted);
+  font-family: var(--sans);
+  font-size: 0.68rem;
+  font-weight: 700;
+  letter-spacing: 0.06em;
+  line-height: 1;
+  padding: 0.32rem 0.48rem;
+  border-radius: 999px;
+  cursor: pointer;
+}
+
+.lang-switch button:hover {
+  color: var(--ink);
+}
+
+.lang-switch button:focus-visible {
+  outline: 2px solid var(--accent-bright);
+  outline-offset: 1px;
+}
+
+html[lang="ja"] .lang-switch [data-set-lang="ja"],
+html[lang="en"] .lang-switch [data-set-lang="en"] {
+  background: var(--accent);
+  color: #fff;
+}
+
+html[lang="ja"] .lang-switch [data-set-lang="ja"]:hover,
+html[lang="en"] .lang-switch [data-set-lang="en"]:hover {
+  color: #fff;
+}
+
+html:not([lang="en"]) .lang-en {
+  display: none;
+}
+
+html[lang="en"] .lang-ja {
+  display: none;
+}
+
 .nav {
   display: flex;
   flex-wrap: wrap;
@@ -206,7 +265,7 @@ a:hover {
   letter-spacing: -0.01em;
 }
 
-.hero h1 span {
+.hero h1 span[lang="en"] {
   display: inline-block;
   margin-top: 0.35rem;
   font-size: 0.55em;
@@ -231,27 +290,6 @@ a:hover {
   width: 3px;
   border-radius: 2px;
   background: linear-gradient(180deg, var(--accent-bright), var(--accent));
-}
-
-.en {
-  font-family: var(--sans);
-  font-weight: 500;
-  color: var(--muted);
-  font-size: 0.72em;
-}
-
-.en-line {
-  display: block;
-  margin: 0.15rem 0 0.35rem;
-  font-weight: 400;
-  color: var(--muted);
-  font-size: 0.9rem;
-}
-
-.en-inline {
-  color: var(--muted);
-  font-size: 0.9rem;
-  font-weight: 400;
 }
 
 .lead {
@@ -340,11 +378,6 @@ a:hover {
   transform: translateY(-0.05rem) scale(1);
   opacity: 1;
   box-shadow: 0 0 0 5px color-mix(in srgb, var(--accent-bright) 20%, transparent);
-}
-
-.section h2 .en {
-  font-family: var(--serif);
-  font-size: 0.78em;
 }
 
 .sr-only {
@@ -447,20 +480,11 @@ a:hover {
   border-image: linear-gradient(90deg, var(--accent-soft), transparent 70%) 1;
 }
 
-.section h3 .en {
-  font-size: 0.85em;
-}
-
 .section h4 {
   margin: 1.15rem 0 0.55rem;
   font-size: 0.95rem;
   font-weight: 600;
   color: var(--accent);
-}
-
-.section h4 .en {
-  font-size: 0.9em;
-  font-weight: 500;
 }
 
 .timeline,
@@ -511,11 +535,6 @@ a:hover {
   color: var(--muted);
 }
 
-.about-interests-label .en {
-  font-weight: 500;
-  opacity: 0.85;
-}
-
 .interest-list {
   margin: 0;
   padding-left: 1.1rem;
@@ -526,13 +545,6 @@ a:hover {
 
 .interest-list li {
   margin: 0.2rem 0;
-}
-
-.interest-list .en-inline {
-  display: block;
-  color: var(--muted);
-  font-size: 0.86rem;
-  margin-top: 0.1rem;
 }
 
 .plain-list li {
@@ -873,7 +885,7 @@ a:hover {
     line-height: 1.25;
   }
 
-  .hero h1 span {
+  .hero h1 span[lang="en"] {
     margin-top: 0.15rem;
   }
 
@@ -887,10 +899,6 @@ a:hover {
   }
 
   .affiliation::before {
-    display: none;
-  }
-
-  .affiliation .en-line {
     display: none;
   }
 
@@ -908,15 +916,6 @@ a:hover {
   .interest-list {
     font-size: 0.8rem;
     padding-left: 1rem;
-  }
-
-  .interest-list .en-inline {
-    font-size: 0.72rem;
-  }
-
-  .en-line,
-  .en-inline {
-    font-size: 0.72rem;
   }
 
   .hero .portrait {
@@ -989,9 +988,7 @@ a:hover {
     font-size: 0.86rem;
   }
 
-  .timeline p,
-  .timeline .en-line,
-  .timeline .en-inline {
+  .timeline p {
     font-size: 0.78rem;
   }
 

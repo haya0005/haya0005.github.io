@@ -33,6 +33,21 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Figtree:wght@400;500;600;700&family=Newsreader:opsz,wght@6..72,500;6..72,600;6..72,700&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="styles.css">
+  <script>
+    (function () {
+      var lang = "ja";
+      try {
+        var saved = localStorage.getItem("site-lang");
+        if (saved === "ja" || saved === "en") {
+          lang = saved;
+        } else {
+          var navLang = (navigator.language || "ja").toLowerCase();
+          lang = navLang.indexOf("ja") === 0 ? "ja" : "en";
+        }
+      } catch (e) {}
+      document.documentElement.lang = lang;
+    })();
+  </script>
 
   <script type="application/ld+json">
   {
@@ -73,15 +88,21 @@
 <body>
   <header class="site-header">
     <div class="container header-inner">
-      <a class="brand" href="#top">Hayato Yagi</a>
+      <div class="header-brand">
+        <a class="brand" href="#top">Hayato Yagi</a>
+        <div class="lang-switch" role="group" aria-label="表示言語">
+          <button type="button" data-set-lang="ja" aria-pressed="true">JA</button>
+          <button type="button" data-set-lang="en" aria-pressed="false">EN</button>
+        </div>
+      </div>
       <nav class="nav" aria-label="Main">
-        <a href="#about">About</a>
-        <a href="#news">News</a>
-        <a href="#education">経歴</a>
-        <a href="#awards">受賞</a>
-        <a href="#publications">論文</a>
-        <a href="#experience">経験</a>
-        <a href="#contact">連絡先</a>
+        <a href="#about"><span class="lang-ja">概要</span><span class="lang-en">About</span></a>
+        <a href="#news"><span class="lang-ja">ニュース</span><span class="lang-en">News</span></a>
+        <a href="#education"><span class="lang-ja">経歴</span><span class="lang-en">Education</span></a>
+        <a href="#awards"><span class="lang-ja">受賞</span><span class="lang-en">Awards</span></a>
+        <a href="#publications"><span class="lang-ja">論文</span><span class="lang-en">Publications</span></a>
+        <a href="#experience"><span class="lang-ja">経験</span><span class="lang-en">Experience</span></a>
+        <a href="#contact"><span class="lang-ja">連絡先</span><span class="lang-en">Contact</span></a>
       </nav>
     </div>
   </header>
@@ -89,148 +110,141 @@
   <main id="top">
     <section class="hero container" id="about">
       <div class="hero-text">
-        <h1>八木 颯斗<br><span lang="en">Hayato Yagi</span></h1>
+        <h1><span lang="ja">八木 颯斗</span><br><span lang="en">Hayato Yagi</span></h1>
         <p class="affiliation">
-          慶應義塾大学大学院 理工学研究科<br>
-          <span lang="en" class="en-line">Graduate School of Science and Technology, Keio University</span>
-          高道研究室 修士2年<br>
-          <span lang="en" class="en-line">Takamichi Lab, M.E. student (2nd year)</span>
+          <span class="lang-ja">慶應義塾大学大学院 理工学研究科<br>高道研究室 修士2年</span>
+          <span class="lang-en">Graduate School of Science and Technology, Keio University<br>Takamichi Lab, M.E. student (2nd year)</span>
         </p>
         <div class="about-interests">
-          <p class="about-interests-label">研究興味 <span class="en">(Research Interests)</span></p>
+          <p class="about-interests-label"><span class="lang-ja">研究興味</span><span class="lang-en">Research Interests</span></p>
           <ul class="interest-list">
-            <li>基盤モデルの内部機序分析 <span class="en-inline">(Internal Mechanism Analysis of Foundation Models)</span></li>
-            <li>音楽情報処理 <span class="en-inline">(Music Information Processing)</span></li>
+            <li><span class="lang-ja">基盤モデルの内部機序分析</span><span class="lang-en">Internal Mechanism Analysis of Foundation Models</span></li>
+            <li><span class="lang-ja">音楽情報処理</span><span class="lang-en">Music Information Processing</span></li>
           </ul>
         </div>
       </div>
       <figure class="portrait">
-        <img src="assets/yagi_1_1.jpg" alt="八木 颯斗の顔写真">
+        <img src="assets/yagi_1_1.jpg" alt="八木 颯斗の顔写真" data-alt-ja="八木 颯斗の顔写真" data-alt-en="Portrait of Hayato Yagi">
       </figure>
     </section>
 
     <section class="section container" id="news">
-      <h2>News</h2>
+      <h2><span class="lang-ja">ニュース</span><span class="lang-en">News</span></h2>
       <ol class="plain-list">
         <li>
           <span class="when">2026.09</span>
           <div>
-            「音楽基盤モデルは音高情報を螺旋構造に埋め込むか？」が
-            <a href="https://www.ipsj.or.jp/award/yamashita2026.html" target="_blank" rel="noopener">2026年度 山下記念研究賞</a>
-            を受賞しました。
+            <span class="lang-ja">「音楽基盤モデルは音高情報を螺旋構造に埋め込むか？」が<a href="https://www.ipsj.or.jp/award/yamashita2026.html" target="_blank" rel="noopener">2026年度 山下記念研究賞</a>を受賞しました。</span>
+            <span class="lang-en">「音楽基盤モデルは音高情報を螺旋構造に埋め込むか？」 received the <a href="https://www.ipsj.or.jp/award/yamashita2026.html" target="_blank" rel="noopener">IPSJ Yamashita SIG Research Award 2026</a>.</span>
           </div>
         </li>
         <li>
           <span class="when">2026.07</span>
           <div>
-            <a href="https://ismir2026.ismir.net/" target="_blank" rel="noopener"><em>ISMIR 2026</em></a> に採択されました（採択率 31.2%）。
+            <span class="lang-ja"><a href="https://ismir2026.ismir.net/" target="_blank" rel="noopener"><em>ISMIR 2026</em></a> に採択されました（採択率 31.2%）。</span>
+            <span class="lang-en">Accepted to <a href="https://ismir2026.ismir.net/" target="_blank" rel="noopener"><em>ISMIR 2026</em></a> (acceptance rate 31.2%).</span>
           </div>
         </li>
         <li>
           <span class="when">2026.06</span>
           <div>
-            <a href="https://interspeech2026.org/" target="_blank" rel="noopener"><em>Interspeech 2026</em></a> に採択されました。
+            <span class="lang-ja"><a href="https://interspeech2026.org/" target="_blank" rel="noopener"><em>Interspeech 2026</em></a> に採択されました。</span>
+            <span class="lang-en">Accepted to <a href="https://interspeech2026.org/" target="_blank" rel="noopener"><em>Interspeech 2026</em></a>.</span>
           </div>
         </li>
         <li>
           <span class="when">2026.06</span>
           <div>
-            音学シンポジウム2026にて
-            <a href="https://www.ipsj.or.jp/award/musslp-award1.html" target="_blank" rel="noopener">優秀発表賞</a>
-            を受賞しました。
+            <span class="lang-ja">音学シンポジウム2026にて<a href="https://www.ipsj.or.jp/award/musslp-award1.html" target="_blank" rel="noopener">優秀発表賞</a>を受賞しました。</span>
+            <span class="lang-en">Received the <a href="https://www.ipsj.or.jp/award/musslp-award1.html" target="_blank" rel="noopener">Best Presentation Award</a> at Ongaku Symposium 2026.</span>
           </div>
         </li>
         <li>
           <span class="when">2025.08</span>
           <div>
-            第144回研究会 音楽情報科学研究会（MUS研究会）にて
-            <a href="https://www.ipsj.or.jp/award/mus-award1.html" target="_blank" rel="noopener">ベストプレゼンテーション賞（Best Research 部門）</a>
-            を受賞しました。
+            <span class="lang-ja">第144回研究会 音楽情報科学研究会（MUS研究会）にて<a href="https://www.ipsj.or.jp/award/mus-award1.html" target="_blank" rel="noopener">ベストプレゼンテーション賞（Best Research 部門）</a>を受賞しました。</span>
+            <span class="lang-en">Received the <a href="https://www.ipsj.or.jp/award/mus-award1.html" target="_blank" rel="noopener">Best Presentation Award (Best Research)</a> at the 144th IPSJ SIGMUS meeting.</span>
           </div>
         </li>
       </ol>
     </section>
 
     <section class="section container" id="education">
-      <h2>経歴 <span class="en">(Education)</span></h2>
+      <h2><span class="lang-ja">経歴</span><span class="lang-en">Education</span></h2>
       <ul class="timeline">
         <li>
-          <span class="when">2025.04 – Present</span>
+          <span class="when">2025.04 – <span class="lang-ja">現在</span><span class="lang-en">Present</span></span>
           <div>
-            <strong>慶應義塾大学大学院 理工学研究科 開放環境科学専攻</strong>
-            <p class="en-line">Graduate School of Science and Technology, Keio University</p>
-            <p>修士課程 / 指導教員: 高道 慎之介<br>
-              <span class="en-inline">M.E. / Advisor: Shinnosuke Takamichi</span>
-            </p>
+            <strong><span class="lang-ja">慶應義塾大学大学院 理工学研究科 開放環境科学専攻</span><span class="lang-en">School of Science for Open and Environmental Systems, Graduate School of Science and Technology, Keio University</span></strong>
+            <p><span class="lang-ja">修士課程 / 指導教員: 高道 慎之介</span><span class="lang-en">M.E. / Advisor: Shinnosuke Takamichi</span></p>
           </div>
         </li>
         <li>
           <span class="when">2021.04 – 2025.03</span>
           <div>
-            <strong>慶應義塾大学 理工学部 情報工学科</strong>
-            <p class="en-line">Faculty of Science and Technology, Keio University</p>
-            <p>学士 / 指導教員: 斎藤 博昭<br>
-              <span class="en-inline">B.E. / Advisor: Hiroaki Saito</span>
-            </p>
+            <strong><span class="lang-ja">慶應義塾大学 理工学部 情報工学科</span><span class="lang-en">Department of Information and Computer Science, Faculty of Science and Technology, Keio University</span></strong>
+            <p><span class="lang-ja">学士 / 指導教員: 斎藤 博昭</span><span class="lang-en">B.E. / Advisor: Hiroaki Saito</span></p>
           </div>
         </li>
       </ul>
     </section>
 
     <section class="section container" id="awards">
-      <h2>受賞 <span class="en">(Awards)</span></h2>
+      <h2><span class="lang-ja">受賞</span><span class="lang-en">Awards</span></h2>
       <ol class="plain-list">
         <li>
           <span class="when">2026.09</span>
           <div>
-            2026年度 山下記念研究賞, 情報処理学会,
-            「音楽基盤モデルは音高情報を螺旋構造に埋め込むか？」
+            <span class="lang-ja">2026年度 山下記念研究賞, 情報処理学会, 「音楽基盤モデルは音高情報を螺旋構造に埋め込むか？」</span>
+            <span class="lang-en">IPSJ Yamashita SIG Research Award 2026, 「音楽基盤モデルは音高情報を螺旋構造に埋め込むか？」</span>
           </div>
         </li>
         <li>
           <span class="when">2026.06</span>
           <div>
-            優秀発表賞, 音学シンポジウム2026,
-            「音声基盤モデルは人間と同様の知覚的話者類似性を持つのか？」
+            <span class="lang-ja">優秀発表賞, 音学シンポジウム2026, 「音声基盤モデルは人間と同様の知覚的話者類似性を持つのか？」</span>
+            <span class="lang-en">Best Presentation Award, Ongaku Symposium 2026, 「音声基盤モデルは人間と同様の知覚的話者類似性を持つのか？」</span>
           </div>
         </li>
         <li>
           <span class="when">2026.03</span>
           <div>
-            学生奨励賞（Best New Direction 部門）, 情報処理学会 音楽情報科学研究会（MUS研究会） 第145回研究会,
-            「音楽基盤モデルの表現形成における学習過程の解析手法の検討」（筆頭著者：佐藤りん）
+            <span class="lang-ja">学生奨励賞（Best New Direction 部門）, 情報処理学会 音楽情報科学研究会（MUS研究会） 第145回研究会, 「音楽基盤モデルの表現形成における学習過程の解析手法の検討」（筆頭著者：佐藤りん）</span>
+            <span class="lang-en">Student Encouragement Award (Best New Direction), 145th IPSJ SIGMUS meeting, 「音楽基盤モデルの表現形成における学習過程の解析手法の検討」 (first author: Rin Sato)</span>
           </div>
         </li>
         <li>
           <span class="when">2025.08</span>
           <div>
-            ベストプレゼンテーション賞（Best Research 部門）, 第144回研究会 音楽情報科学研究会（MUS研究会）（夏のシンポジウム）,
-            「音楽基盤モデルは音高情報を螺旋構造に埋め込むか？」
+            <span class="lang-ja">ベストプレゼンテーション賞（Best Research 部門）, 第144回研究会 音楽情報科学研究会（MUS研究会）（夏のシンポジウム）, 「音楽基盤モデルは音高情報を螺旋構造に埋め込むか？」</span>
+            <span class="lang-en">Best Presentation Award (Best Research), 144th IPSJ SIGMUS meeting (Summer Symposium), 「音楽基盤モデルは音高情報を螺旋構造に埋め込むか？」</span>
           </div>
         </li>
       </ol>
     </section>
 
     <section class="section container" id="publications">
-      <h2>論文リスト <span class="en">(Publications)</span></h2>
+      <h2><span class="lang-ja">論文リスト</span><span class="lang-en">Publications</span></h2>
       <div class="pubs-search">
-        <label class="sr-only" for="pubs-search-input">論文を検索</label>
+        <label class="sr-only" for="pubs-search-input"><span class="lang-ja">論文を検索</span><span class="lang-en">Search publications</span></label>
         <div class="pubs-search-field">
           <span class="pubs-search-icon" aria-hidden="true"></span>
           <input
             id="pubs-search-input"
             type="search"
             placeholder="タイトル・著者・会議名などで検索"
+            data-placeholder-ja="タイトル・著者・会議名などで検索"
+            data-placeholder-en="Search by title, author, or venue"
             autocomplete="off"
           >
         </div>
         <p id="pubs-search-status" class="pubs-search-status" aria-live="polite"></p>
-        <p id="pubs-search-empty" class="pubs-search-empty" hidden>一致する論文がありません。</p>
+        <p id="pubs-search-empty" class="pubs-search-empty" hidden><span class="lang-ja">一致する論文がありません。</span><span class="lang-en">No matching publications.</span></p>
       </div>
 
-      <h3>国際会議 <span class="en">(International Conferences)</span></h3>
+      <h3><span class="lang-ja">国際会議</span><span class="lang-en">International Conferences</span></h3>
 
-      <h4>主著 <span class="en">(First Author)</span></h4>
+      <h4><span class="lang-ja">主著</span><span class="lang-en">First Author</span></h4>
       <ol class="pubs">
         <li>
           <div class="pub-body">
@@ -275,19 +289,18 @@
         </li>
       </ol>
 
-      <h4>共著 <span class="en">(Co-author)</span></h4>
+      <h4><span class="lang-ja">共著</span><span class="lang-en">Co-author</span></h4>
       <ol class="pubs">
       </ol>
 
-      <h3>国内会議 <span class="en">(Domestic Conferences)</span></h3>
+      <h3><span class="lang-ja">国内会議</span><span class="lang-en">Domestic Conferences</span></h3>
 
-      <h4>主著 <span class="en">(First Author)</span></h4>
+      <h4><span class="lang-ja">主著</span><span class="lang-en">First Author</span></h4>
       <ol class="pubs">
         <li>
           <div class="pub-body">
-            <strong>八木 颯斗</strong>, 高道 慎之介, 佐藤 りん, 田中 啓太郎, 森島 繁生,
-            「音楽基盤モデルにおけるモデル構成と内在音高螺旋の関係」,
-            情報処理学会 音楽情報科学研究会, Aug. 2026.
+            <span class="lang-ja"><strong>八木 颯斗</strong>, 高道 慎之介, 佐藤 りん, 田中 啓太郎, 森島 繁生, 「音楽基盤モデルにおけるモデル構成と内在音高螺旋の関係」, 情報処理学会 音楽情報科学研究会, Aug. 2026.</span>
+            <span class="lang-en"><strong>Hayato Yagi</strong>, Shinnosuke Takamichi, Rin Sato, Keitaro Tanaka, and Shigeo Morishima, 「音楽基盤モデルにおけるモデル構成と内在音高螺旋の関係」, IPSJ SIGMUS, Aug. 2026.</span>
           </div>
           <div class="pub-links">
             <button type="button" class="btn btn-bib bib-toggle" aria-expanded="false">BIB</button>
@@ -305,9 +318,8 @@
         </li>
         <li>
           <div class="pub-body">
-            <strong>八木 颯斗</strong>, 高道 慎之介, 佐藤 りん, 田中 啓太郎, 森島 繁生,
-            「音楽基盤モデルは音高情報を螺旋構造に埋め込む」,
-            言語処理学会 若手支援事業, Aug. 2026.
+            <span class="lang-ja"><strong>八木 颯斗</strong>, 高道 慎之介, 佐藤 りん, 田中 啓太郎, 森島 繁生, 「音楽基盤モデルは音高情報を螺旋構造に埋め込む」, 言語処理学会 若手支援事業, Aug. 2026.</span>
+            <span class="lang-en"><strong>Hayato Yagi</strong>, Shinnosuke Takamichi, Rin Sato, Keitaro Tanaka, and Shigeo Morishima, 「音楽基盤モデルは音高情報を螺旋構造に埋め込む」, ANLP Young Researcher Support Program (YANS), Aug. 2026.</span>
           </div>
           <div class="pub-links">
             <button type="button" class="btn btn-bib bib-toggle" aria-expanded="false">BIB</button>
@@ -324,11 +336,8 @@
         </li>
         <li>
           <div class="pub-body">
-            岸 秀<sup>†</sup>, <strong>八木 颯斗<sup>†</sup></strong>, 高道 慎之介, 齋藤 佑樹,
-            「音声基盤モデルは人間と同様の知覚的話者類似性を持つのか？」,
-            情報処理学会 音声言語処理研究会, Jun. 2026.
-            <span class="cofirst">†共同第一著者</span>
-            <span class="award-inline">優秀発表賞</span>
+            <span class="lang-ja">岸 秀<sup>†</sup>, <strong>八木 颯斗<sup>†</sup></strong>, 高道 慎之介, 齋藤 佑樹, 「音声基盤モデルは人間と同様の知覚的話者類似性を持つのか？」, 情報処理学会 音声言語処理研究会, Jun. 2026. <span class="cofirst">†共同第一著者</span> <span class="award-inline">優秀発表賞</span></span>
+            <span class="lang-en">Minoru Kishi<sup>†</sup>, <strong>Hayato Yagi<sup>†</sup></strong>, Shinnosuke Takamichi, and Yuki Saito, 「音声基盤モデルは人間と同様の知覚的話者類似性を持つのか？」, IPSJ SIG-SLP, Jun. 2026. <span class="cofirst">†co-first author</span> <span class="award-inline">Best Presentation Award</span></span>
           </div>
           <div class="pub-links">
             <button type="button" class="btn btn-bib bib-toggle" aria-expanded="false">BIB</button>
@@ -346,9 +355,8 @@
         </li>
         <li>
           <div class="pub-body">
-            <strong>八木 颯斗</strong>, 稲垣 賢斗, 高島 悠樹, 安藤 厚志, 高道 慎之介,
-            「Full-duplex音声対話モデルにおける性別表現のプロービング」,
-            情報処理学会 音声言語処理研究会, Mar. 2026.
+            <span class="lang-ja"><strong>八木 颯斗</strong>, 稲垣 賢斗, 高島 悠樹, 安藤 厚志, 高道 慎之介, 「Full-duplex音声対話モデルにおける性別表現のプロービング」, 情報処理学会 音声言語処理研究会, Mar. 2026.</span>
+            <span class="lang-en"><strong>Hayato Yagi</strong>, Kento Inagaki, Yuki Takashima, Atsushi Ando, and Shinnosuke Takamichi, 「Full-duplex音声対話モデルにおける性別表現のプロービング」, IPSJ SIG-SLP, Mar. 2026.</span>
           </div>
           <div class="pub-links">
             <button type="button" class="btn btn-bib bib-toggle" aria-expanded="false">BIB</button>
@@ -366,9 +374,8 @@
         </li>
         <li>
           <div class="pub-body">
-            <strong>八木 颯斗</strong>, 高道 慎之介, 佐藤 りん, 田中 啓太郎, 森島 繁生,
-            「音楽基盤モデルにおける音響特徴と内在音高螺旋の関係」,
-            情報処理学会 音楽情報科学研究会, Mar. 2026.
+            <span class="lang-ja"><strong>八木 颯斗</strong>, 高道 慎之介, 佐藤 りん, 田中 啓太郎, 森島 繁生, 「音楽基盤モデルにおける音響特徴と内在音高螺旋の関係」, 情報処理学会 音楽情報科学研究会, Mar. 2026.</span>
+            <span class="lang-en"><strong>Hayato Yagi</strong>, Shinnosuke Takamichi, Rin Sato, Keitaro Tanaka, and Shigeo Morishima, 「音楽基盤モデルにおける音響特徴と内在音高螺旋の関係」, IPSJ SIGMUS, Mar. 2026.</span>
           </div>
           <div class="pub-links">
             <button type="button" class="btn btn-bib bib-toggle" aria-expanded="false">BIB</button>
@@ -386,11 +393,8 @@
         </li>
         <li>
           <div class="pub-body">
-            <strong>八木 颯斗</strong>, 高道 慎之介,
-            「音楽基盤モデルは音高情報を螺旋構造に埋め込むか？」,
-            情報処理学会 音楽情報科学研究会, Aug. 2025.
-            <span class="award-inline">ベストプレゼンテーション賞（Best Research 部門）</span>，
-            <span class="award-inline">2026年度 山下記念研究賞</span>
+            <span class="lang-ja"><strong>八木 颯斗</strong>, 高道 慎之介, 「音楽基盤モデルは音高情報を螺旋構造に埋め込むか？」, 情報処理学会 音楽情報科学研究会, Aug. 2025. <span class="award-inline">ベストプレゼンテーション賞（Best Research 部門）</span>，<span class="award-inline">2026年度 山下記念研究賞</span></span>
+            <span class="lang-en"><strong>Hayato Yagi</strong> and Shinnosuke Takamichi, 「音楽基盤モデルは音高情報を螺旋構造に埋め込むか？」, IPSJ SIGMUS, Aug. 2025. <span class="award-inline">Best Presentation Award (Best Research)</span>, <span class="award-inline">IPSJ Yamashita SIG Research Award 2026</span></span>
           </div>
           <div class="pub-links">
             <button type="button" class="btn btn-bib bib-toggle" aria-expanded="false">BIB</button>
@@ -408,9 +412,8 @@
         </li>
         <li>
           <div class="pub-body">
-            <strong>八木 颯斗</strong>, 斎藤 博昭,
-            「MIDI-likeトークンを用いたseq2seqモデルによる鼻歌自動採譜」,
-            情報処理学会 音楽情報科学研究会, Jun. 2025.
+            <span class="lang-ja"><strong>八木 颯斗</strong>, 斎藤 博昭, 「MIDI-likeトークンを用いたseq2seqモデルによる鼻歌自動採譜」, 情報処理学会 音楽情報科学研究会, Jun. 2025.</span>
+            <span class="lang-en"><strong>Hayato Yagi</strong> and Hiroaki Saito, 「MIDI-likeトークンを用いたseq2seqモデルによる鼻歌自動採譜」, IPSJ SIGMUS, Jun. 2025.</span>
           </div>
           <div class="pub-links">
             <button type="button" class="btn btn-bib bib-toggle" aria-expanded="false">BIB</button>
@@ -426,13 +429,12 @@
         </li>
       </ol>
 
-      <h4>共著 <span class="en">(Co-author)</span></h4>
+      <h4><span class="lang-ja">共著</span><span class="lang-en">Co-author</span></h4>
       <ol class="pubs">
         <li>
           <div class="pub-body">
-            千頭和 翔梧, 岸 秀, <strong>八木 颯斗</strong>, 佐藤 りん, 高道 慎之介, 田中 啓太郎, 森島 繁生,
-            「音楽基盤モデルは単音から和音の埋め込みをどのように演算するか？」,
-            情報処理学会 音楽情報科学研究会, Aug. 2026.
+            <span class="lang-ja">千頭和 翔梧, 岸 秀, <strong>八木 颯斗</strong>, 佐藤 りん, 高道 慎之介, 田中 啓太郎, 森島 繁生, 「音楽基盤モデルは単音から和音の埋め込みをどのように演算するか？」, 情報処理学会 音楽情報科学研究会, Aug. 2026.</span>
+            <span class="lang-en">Shogo Chizuwa, Minoru Kishi, <strong>Hayato Yagi</strong>, Rin Sato, Shinnosuke Takamichi, Keitaro Tanaka, and Shigeo Morishima, 「音楽基盤モデルは単音から和音の埋め込みをどのように演算するか？」, IPSJ SIGMUS, Aug. 2026.</span>
           </div>
           <div class="pub-links">
             <button type="button" class="btn btn-bib bib-toggle" aria-expanded="false">BIB</button>
@@ -448,9 +450,8 @@
         </li>
         <li>
           <div class="pub-body">
-            佐藤 りん, 田中 啓太郎, <strong>八木 颯斗</strong>, 高道 慎之介, 森島 繁生,
-            「音楽基盤モデルの学習過程における内在音高螺旋の可視化」,
-            情報処理学会 音楽情報科学研究会, Jun. 2026.
+            <span class="lang-ja">佐藤 りん, 田中 啓太郎, <strong>八木 颯斗</strong>, 高道 慎之介, 森島 繁生, 「音楽基盤モデルの学習過程における内在音高螺旋の可視化」, 情報処理学会 音楽情報科学研究会, Jun. 2026.</span>
+            <span class="lang-en">Rin Sato, Keitaro Tanaka, <strong>Hayato Yagi</strong>, Shinnosuke Takamichi, and Shigeo Morishima, 「音楽基盤モデルの学習過程における内在音高螺旋の可視化」, IPSJ SIGMUS, Jun. 2026.</span>
           </div>
           <div class="pub-links">
             <button type="button" class="btn btn-bib bib-toggle" aria-expanded="false">BIB</button>
@@ -466,10 +467,9 @@
         </li>
         <li>
           <div class="pub-body">
-            佐藤 りん, 田中 啓太郎, <strong>八木 颯斗</strong>, 高道 慎之介, 森島 繁生,
-            「音楽基盤モデルの表現形成における学習過程の解析手法の検討」,
-            情報処理学会 音楽情報科学研究会, Mar. 2026.
-            <p class="award-note">学生奨励賞（Best New Direction 部門）</p>
+            <span class="lang-ja">佐藤 りん, 田中 啓太郎, <strong>八木 颯斗</strong>, 高道 慎之介, 森島 繁生, 「音楽基盤モデルの表現形成における学習過程の解析手法の検討」, 情報処理学会 音楽情報科学研究会, Mar. 2026.</span>
+            <span class="lang-en">Rin Sato, Keitaro Tanaka, <strong>Hayato Yagi</strong>, Shinnosuke Takamichi, and Shigeo Morishima, 「音楽基盤モデルの表現形成における学習過程の解析手法の検討」, IPSJ SIGMUS, Mar. 2026.</span>
+            <p class="award-note"><span class="lang-ja">学生奨励賞（Best New Direction 部門）</span><span class="lang-en">Student Encouragement Award (Best New Direction)</span></p>
           </div>
           <div class="pub-links">
             <button type="button" class="btn btn-bib bib-toggle" aria-expanded="false">BIB</button>
@@ -488,27 +488,26 @@
     </section>
 
     <section class="section container" id="experience">
-      <h2>インターンシップ <span class="en">(Internship)</span></h2>
+      <h2><span class="lang-ja">インターンシップ</span><span class="lang-en">Internship</span></h2>
       <ul class="timeline">
         <li>
           <span class="when">2025.08 – 2025.09</span>
           <div>
-            <strong>NTT R&amp;D 人間情報研究所</strong>
-            <p class="en-line">NTT R&amp;D, Human Informatics Laboratories</p>
+            <strong><span class="lang-ja">NTT R&amp;D 人間情報研究所</span><span class="lang-en">NTT R&amp;D, Human Informatics Laboratories</span></strong>
           </div>
         </li>
         <li>
           <span class="when">2024.03 – 2025.03</span>
           <div>
-            <strong>株式会社ナガセ</strong>東進模試採点運営IT部門 / バックエンドエンジニア
-            <p class="en-line">Nagase Co., Ltd. — Backend Engineer, Toshin Mock Exam Scoring Operations IT</p>
+            <strong><span class="lang-ja">株式会社ナガセ</span><span class="lang-en">Nagase Co., Ltd.</span></strong>
+            <p><span class="lang-ja">東進模試採点運営IT部門 / バックエンドエンジニア</span><span class="lang-en">Backend Engineer, Toshin Mock Exam Scoring Operations IT</span></p>
           </div>
         </li>
       </ul>
     </section>
 
     <section class="section container" id="contact">
-      <h2>連絡先 <span class="en">(Contact)</span></h2>
+      <h2><span class="lang-ja">連絡先</span><span class="lang-en">Contact</span></h2>
       <ul class="contact-list">
         <li><span>Email</span> <a href="mailto:hayatobuti523@keio.jp">hayatobuti523[at]keio.jp</a></li>
         <li><span>GitHub</span> <a href="https://github.com/haya0005" target="_blank" rel="noopener">haya0005</a></li>
@@ -600,11 +599,15 @@
           h3.hidden = !anyVisible;
         });
 
-        status.textContent = `${visibleCount} 件ヒット`;
+        const en = document.documentElement.lang === "en";
+        status.textContent = en
+          ? `${visibleCount} result${visibleCount === 1 ? "" : "s"}`
+          : `${visibleCount} 件ヒット`;
         empty.hidden = visibleCount > 0;
       };
 
       input.addEventListener("input", filterPubs);
+      document.addEventListener("langchange", filterPubs);
     })();
 
     (() => {
@@ -706,6 +709,49 @@
           }, 800);
         });
       });
+    })();
+
+    (() => {
+      const buttons = document.querySelectorAll(".lang-switch [data-set-lang]");
+      const group = document.querySelector(".lang-switch");
+      const nav = document.querySelector(".nav");
+      const input = document.getElementById("pubs-search-input");
+      const portrait = document.querySelector(".portrait img");
+      const titles = {
+        ja: "八木 颯斗 | Hayato Yagi | 慶應義塾大学 高道研究室",
+        en: "Hayato Yagi | Takamichi Lab, Keio University",
+      };
+
+      const apply = (lang, persist) => {
+        const next = lang === "en" ? "en" : "ja";
+        document.documentElement.lang = next;
+        buttons.forEach((button) => {
+          button.setAttribute("aria-pressed", String(button.dataset.setLang === next));
+        });
+        if (group) group.setAttribute("aria-label", next === "en" ? "Language" : "表示言語");
+        if (nav) nav.setAttribute("aria-label", next === "en" ? "Main" : "メイン");
+        if (input) {
+          const placeholder = input.getAttribute(next === "en" ? "data-placeholder-en" : "data-placeholder-ja");
+          if (placeholder) input.placeholder = placeholder;
+        }
+        if (portrait) {
+          const alt = portrait.getAttribute(next === "en" ? "data-alt-en" : "data-alt-ja");
+          if (alt) portrait.alt = alt;
+        }
+        document.title = titles[next];
+        if (persist) {
+          try {
+            localStorage.setItem("site-lang", next);
+          } catch (e) {}
+        }
+        document.dispatchEvent(new CustomEvent("langchange"));
+      };
+
+      buttons.forEach((button) => {
+        button.addEventListener("click", () => apply(button.dataset.setLang, true));
+      });
+
+      apply(document.documentElement.lang, false);
     })();
   </script>
 </body>
