@@ -334,19 +334,6 @@ html[lang="en"] .lang-ja {
   border-top: 1px solid color-mix(in srgb, var(--line) 75%, transparent);
 }
 
-.section.reveal {
-  opacity: 0;
-  transform: translateY(18px);
-  transition:
-    opacity 0.75s var(--ease),
-    transform 0.75s var(--ease);
-}
-
-.section.reveal.is-visible {
-  opacity: 1;
-  transform: translateY(0);
-}
-
 .section h2 {
   margin: 0 0 1.35rem;
   font-family: var(--serif);
@@ -827,11 +814,6 @@ html[lang="en"] .lang-ja {
   *::after {
     animation: none !important;
     transition: none !important;
-  }
-
-  .section.reveal {
-    opacity: 1;
-    transform: none;
   }
 
   .section h2::before {
